@@ -2,6 +2,7 @@ import e from "express";
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
 export function registerUser(req, res) {
     //user ට තමා collection එකත් එක්ක සම්බන්දේ තියෙන්නෙ
@@ -45,7 +46,7 @@ export function logingUser(req, res) {
                         lastName: user.lastName,
                         email: user.email,
                         role: user.role
-                    },"kv-Secrect-891")   
+                    },process.env.JWT_SECRET)   
                     res.json({
                         message: "Login Success", token : token
                     })

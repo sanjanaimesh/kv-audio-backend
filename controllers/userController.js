@@ -4,6 +4,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
+dotenv.config(); // Load environment variables from .env file
+
 export function registerUser(req, res) {
     //user ට තමා collection එකත් එක්ක සම්බන්දේ තියෙන්නෙ
     //const newUser = new User(req.body) //Db එකේ සේව් කරන්න පුලුවන් විදියේ user කෙනෙක් හදා ගන්නවා

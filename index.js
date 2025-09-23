@@ -5,6 +5,7 @@ import UserRouter from "./routes/userRouter.js";
 import productRouter from "./routes/productRouter.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import reviewRouter from "./routes/reviewRouter.js";
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -42,7 +43,11 @@ connection.once("open", () => {
 
 app.use("/api/users", UserRouter);
 app.use("/api/products", productRouter);
+app.use("/api/reviews", reviewRouter)
 
 app.listen(3000, (req, res) => {
     console.log("Port running 3000")
 })
+
+//sanjana1example.com 123! - customer
+//sanjana2example.com 123! - admin

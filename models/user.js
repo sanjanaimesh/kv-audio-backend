@@ -31,6 +31,11 @@ const userSchema = new mongoose.Schema(
         phone : {
             type : String,
             required : true
+        },
+        profilePicture :{
+            type : String,
+            required : true,
+            default : "default.https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS06TGTOlnRnEavBmnT7MIC1fre5hAhE3HfTQ&s"
         }
     }
 );

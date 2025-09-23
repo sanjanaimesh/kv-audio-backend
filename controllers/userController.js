@@ -1,4 +1,4 @@
-import e from "express";
+
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -35,6 +35,7 @@ export function logingUser(req, res) {
     }).then(
         (user) => {
             if (user == null) {
+                console.log("Login request data:", data);
                 res.status(401).json({
                     error: "user not found"
                 })
@@ -47,7 +48,8 @@ export function logingUser(req, res) {
                         firstName: user.firstName,
                         lastName: user.lastName,
                         email: user.email,
-                        role: user.role
+                        role: user.role,
+                        profilePicture: user.profilePicture
                     },process.env.JWT_SECRET)   
                     res.json({
                         message: "Login Success", token : token
@@ -62,3 +64,6 @@ export function logingUser(req, res) {
         }
     )
 }
+
+
+

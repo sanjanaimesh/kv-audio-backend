@@ -7,13 +7,14 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import reviewRouter from "./routes/reviewRouter.js";
 import inquiryRouter from "./routes/inquiryRoutes.js";
-
+import cors from "cors";
 dotenv.config(); // Load environment variables from .env file
 
 
 
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 app.use((req, res, next) => {
 
@@ -51,5 +52,5 @@ app.listen(3000, (req, res) => {
     console.log("Port running 3000")
 })
 
-//sanjana1example.com 123! - customer
-//sanjana2example.com 123! - admin
+//sanjana1example@gmail.com 123! - customer
+//sanjana2example@gmail.com 123! - admin

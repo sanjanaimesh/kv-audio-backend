@@ -8,7 +8,7 @@ const orderSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        unique: true
+        
     },
     orderDate: {
         type: Date,
@@ -67,6 +67,7 @@ const orderSchema = new mongoose.Schema({
     }
 })
 
-const Order = mongoose.modelNames("Orders",orderSchema);
+const Order = mongoose.model("Order", orderSchema);
+
 
 export default Order;

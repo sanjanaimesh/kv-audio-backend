@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 import reviewRouter from "./routes/reviewRouter.js";
 import inquiryRouter from "./routes/inquiryRoutes.js";
 import cors from "cors";
+import orderRouter from "./routes/orderRouter.js";
 dotenv.config(); // Load environment variables from .env file
 
 
@@ -47,6 +48,7 @@ app.use("/api/users", UserRouter);
 app.use("/api/products", productRouter);
 app.use("/api/reviews", reviewRouter)
 app.use("/api/inquiries", inquiryRouter)
+app.use("/api/orders",orderRouter)
 
 app.listen(3000, (req, res) => {
     console.log("Port running 3000")

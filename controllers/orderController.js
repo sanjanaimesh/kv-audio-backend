@@ -1,5 +1,6 @@
 import Order from "../models/order.js";
 import Product from "../models/product.js";
+import { isItAdmin } from "./userController.js";
 
 export async function createOrder(req, res) {
   const data = req.body;
@@ -169,4 +170,38 @@ export async function getOrderQuotation(req, res) {
     message: "Quotation generated successfully",
     quotation: quotation,
   });
+}
+
+
+export async function getOrders(req, res) {
+  try {
+    // check user login
+    if (!req.user) {
+      return res.status(401).json({
+        message: "Please login and try again",
+      });
+    }
+
+    let orders;
+
+    // ✅ if user is admin → show all orders
+    if (isItAdmin(req)) {
+      orders = await Order.find().sort({ createdAt: -1 });
+    } 
+    // ✅ if user is customer → show only their orders
+    else {
+      orders = await Order.find({ email: req.user.email }).sort({ createdAt: -1 });
+    }
+
+    return res.status(200).json({
+      message: "Orders fetched successfully",
+      orders: orders,
+    });
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    return res.status(500).json({
+      message: "Failed to fetch orders",
+      error: error.message,
+    });
+  }
 }
